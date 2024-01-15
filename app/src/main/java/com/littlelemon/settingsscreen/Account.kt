@@ -9,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -102,10 +103,10 @@ class Account : ComponentActivity() {
             Row(modifier = Modifier.padding(bottom = 20.dp)){
                 Text("Get a copy of your data", modifier = Modifier.padding(start = 18.dp))
                 Spacer(modifier=Modifier.weight(1f))
-                Button(onClick = { /*TODO*/ },
+                Button(onClick = { /*TODO*/ }, contentPadding = PaddingValues(0.dp),
                     modifier = Modifier.size(width = 75.dp, height = 28.dp)
                         .padding(end = 18.dp)) {
-                    Text("Request", modifier = Modifier.fillMaxSize()
+                    Text("Request", fontSize = 10.sp, modifier = Modifier.padding(top = 2.dp)
                     )
                 }
             }
