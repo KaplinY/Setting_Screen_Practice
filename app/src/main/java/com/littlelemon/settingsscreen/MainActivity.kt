@@ -49,10 +49,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.littlelemon.settingsscreen.ui.theme.BottomSheetColor
+import com.littlelemon.settingsscreen.ui.theme.ButtonLightGrey
 import com.littlelemon.settingsscreen.ui.theme.SettingsScreenTheme
 
 class MainActivity : ComponentActivity() {
@@ -65,6 +70,9 @@ class MainActivity : ComponentActivity() {
                 BottomSheetScaffold(
                     sheetShape = RoundedCornerShape(20.dp),
                     sheetPeekHeight = 50.dp,
+                    sheetShadowElevation = 8.dp,
+                    sheetTonalElevation = 8.dp,
+                    sheetContainerColor = BottomSheetColor,
                     sheetContent = {
                     MyBottomSheet()
                 }) {
@@ -77,94 +85,50 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun MyBottomSheet() {
+        val profileSettingIntent = Intent(applicationContext,ProfileSettings::class.java)
+        val intent = Intent(applicationContext, FutureActivity::class.java)
         Column(
             modifier = Modifier
-                .heightIn(min = 100.dp, max = 286.dp)
-                .fillMaxSize()//Do this to make sheet expandable
-                .padding(20.dp),
+                .heightIn(min = 80.dp, max = 289.dp).padding(start = 22.dp, end = 22.dp,
+                    bottom = 20.dp),
+
             verticalArrangement = Arrangement.spacedBy(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            FilledTonalButton(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.size(width = 366.dp, height = 40.dp)
+            ButtonBottomSheet(text = "Change cover", intent = intent, id = R.drawable.image_icon)
+
+            ButtonBottomSheet(text = "Show cover", intent = intent, id = R.drawable.user)
+
+            ButtonBottomSheet(text = "Delete cover", intent = intent, id = R.drawable.trash)
+
+            ButtonBottomSheet(text = "Profile setting", intent = profileSettingIntent, id = R.drawable.settings)
+
+            ButtonBottomSheet(text = "Preview aspects", intent = intent, id = R.drawable.eye)
+
+        }
+    }
+
+    @Composable
+    fun ButtonBottomSheet(text: String, intent: Intent, id: Int){
+        FilledTonalButton(onClick = { intent.also { startActivity(it) } },
+            colors = ButtonDefaults.buttonColors(containerColor = ButtonLightGrey),
+            shape = RoundedCornerShape(9.dp),
+            modifier = Modifier.size(width = 366.dp, height = 40.dp),
+            contentPadding = PaddingValues(0.dp)
+        ) {
+            Row(modifier = Modifier.fillMaxWidth().padding(start = 10.dp)
             ) {
-                Row(modifier = Modifier.fillMaxWidth()
-                    ) {
-                    Image(
-                        painterResource(id = R.drawable.image_icon),
-                        contentDescription = "image icon",
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "Change cover", color = Color.Black)
-                }
-            }
-            FilledTonalButton(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.size(width = 366.dp, height = 40.dp)
-            ) {
-                Row(modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painterResource(id = R.drawable.user),
-                        contentDescription = "person icon",
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "Show cover", color = Color.Black)
-                }
-            }
-            FilledTonalButton(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.size(width = 366.dp, height = 40.dp)
-            ) {
-                Row(modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painterResource(id = R.drawable.trash),
-                        contentDescription = "trash icon",
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "Delete cover", color = Color.Black)
-                }
-            }
-            FilledTonalButton(onClick = { Intent(applicationContext,ProfileSettings::class.java).also {
-                startActivity(it) } },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.size(width = 366.dp, height = 40.dp)
-            ) {
-                Row(modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painterResource(id = R.drawable.settings),
-                        contentDescription = "setting icon",
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "Profile settings", color = Color.Black)
-                }
-            }
-            FilledTonalButton(onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.size(width = 366.dp, height = 40.dp)
-            ) {
-                Row(modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painterResource(id = R.drawable.eye),
-                        contentDescription = "eye icon",
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "Preview aspects", color = Color.Black)
-                }
+                Image(
+                    painterResource(id = id),
+                    contentDescription = null,
+                    modifier = Modifier.size(26.dp)
+                )
+                Spacer(modifier = Modifier.width(9.dp))
+                Text(text = text, color = Color.Black, fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 5.dp),
+                    fontFamily = FontFamily(Font(R.font.montserratregular)),
+                    fontWeight = FontWeight(600)
+                )
             }
         }
     }

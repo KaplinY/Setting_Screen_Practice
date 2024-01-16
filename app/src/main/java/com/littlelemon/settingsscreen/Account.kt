@@ -24,10 +24,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -47,11 +49,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.littlelemon.settingsscreen.ui.theme.SettingsScreenTheme
 
 class Account : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { MyAccount() }
+        setContent { SettingsScreenTheme {
+            MyAccount()
+        } }
     }
 
     @Composable
@@ -104,7 +109,8 @@ class Account : ComponentActivity() {
                 Text("Get a copy of your data", modifier = Modifier.padding(start = 18.dp))
                 Spacer(modifier=Modifier.weight(1f))
                 Button(onClick = { /*TODO*/ }, contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier.size(width = 75.dp, height = 28.dp)
+                    modifier = Modifier
+                        .size(width = 75.dp, height = 28.dp)
                         .padding(end = 18.dp)) {
                     Text("Request", fontSize = 10.sp, modifier = Modifier.padding(top = 2.dp)
                     )
@@ -113,17 +119,19 @@ class Account : ComponentActivity() {
 
         }
     }
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun MyTextField(label: String){
         var textState by remember { mutableStateOf("") }
-        TextField(
+        OutlinedTextField(
             value = textState,
             onValueChange = {textState = it},
-            modifier = Modifier.padding(start = 20.dp, bottom = 10.dp)
+            modifier = Modifier
+                .padding(start = 20.dp, bottom = 10.dp)
                 .size(width = 350.dp, height = 50.dp),
             label = {Text(label)},
             maxLines = 1,
-            shape = RoundedCornerShape(10.dp)
+            shape = RoundedCornerShape(10.dp),
         )
 
     }
