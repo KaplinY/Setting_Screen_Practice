@@ -1,4 +1,4 @@
-package com.littlelemon.networkscreen
+package com.littlelemon.networkscreen.SwipeCard
 
 data class SwipeCardItem(
     val name: String,

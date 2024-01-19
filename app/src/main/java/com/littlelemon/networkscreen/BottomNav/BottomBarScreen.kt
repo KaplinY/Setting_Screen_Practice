@@ -1,4 +1,6 @@
-package com.littlelemon.networkscreen
+package com.littlelemon.networkscreen.BottomNav
+
+import com.littlelemon.networkscreen.R
 
 sealed class BottomBarScreen(
     val route: String,

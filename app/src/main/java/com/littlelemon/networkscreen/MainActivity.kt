@@ -16,11 +16,11 @@ import com.littlelemon.networkscreen.TopNav
 import com.littlelemon.networkscreen.NetwSearchBar
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import com.littlelemon.networkscreen.SwipeCard
+import com.littlelemon.networkscreen.SwipeCard.SwipeCard
 import com.littlelemon.networkscreen.ui.theme.BackGroundColor
 import androidx.compose.foundation.lazy.LazyColumn
 import kotlinx.coroutines.flow.MutableStateFlow
-import com.littlelemon.networkscreen.SwipeCardItem
+import com.littlelemon.networkscreen.SwipeCard.SwipeCardItem
 import com.littlelemon.networkscreen.NamesList.namesList
 import com.littlelemon.networkscreen.PersonsList.personsList
 import androidx.compose.runtime.collectAsState

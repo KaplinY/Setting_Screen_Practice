@@ -1,5 +1,8 @@
 package com.littlelemon.networkscreen
 
+import com.littlelemon.networkscreen.SwipeCard.SquareCardItem
+import com.littlelemon.networkscreen.SwipeCard.SwipeCardItem
+
 object NamesList {
     val namesList = mutableListOf(
         SquareCardItem("Aaron"),
