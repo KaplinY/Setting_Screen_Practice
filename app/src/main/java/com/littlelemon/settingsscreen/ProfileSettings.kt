@@ -85,7 +85,7 @@ class ProfileSettings : ComponentActivity() {
             val intentAccount = Intent(applicationContext,Account::class.java)
             val intentMutedAspects = Intent(applicationContext,MutedAspects::class.java)
             TextButton("Account",intentAccount,R.drawable.user)
-            val intentPreferredAspects = Intent(applicationContext,PreferredAspects::class.java)
+            val intentPreferredAspects = Intent(applicationContext,Preffered::class.java)
             val intentFutureScreens = Intent(applicationContext, FutureActivity::class.java)
             TextButton("Preferred Aspects",intentPreferredAspects,R.drawable.star)
             TextButton("Muted Aspects",intentMutedAspects,R.drawable.mute)
