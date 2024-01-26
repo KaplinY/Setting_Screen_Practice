@@ -83,11 +83,12 @@ class ProfileSettings : ComponentActivity() {
             }
 
             val intentAccount = Intent(applicationContext,Account::class.java)
+            val intentMutedAspects = Intent(applicationContext,MutedAspects::class.java)
             TextButton("Account",intentAccount,R.drawable.user)
             val intentPreferredAspects = Intent(applicationContext,PreferredAspects::class.java)
             val intentFutureScreens = Intent(applicationContext, FutureActivity::class.java)
             TextButton("Preferred Aspects",intentPreferredAspects,R.drawable.star)
-            TextButton("Muted Aspects",intentFutureScreens,R.drawable.mute)
+            TextButton("Muted Aspects",intentMutedAspects,R.drawable.mute)
             TextButton("Hidden Posts",intentFutureScreens,R.drawable.book)
             TextButton("Hidden Treets",intentFutureScreens,R.drawable.present)
             TextButton("Pin code",intentFutureScreens,R.drawable.pincode)
